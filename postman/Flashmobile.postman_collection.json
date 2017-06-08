@@ -1,0 +1,78 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Flashmobile",
+		"_postman_id": "4306f272-e3c1-b787-8676-bfb8cb36912e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:54919/api/device/add",
+			"request": {
+				"url": "http://localhost:54919/api/device/add",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "DeviceIdentifier",
+							"value": "1234",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "CallerIdentifier",
+							"value": "abc",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Add Device"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:54919/api/device/get/?id=abc",
+			"request": {
+				"url": {
+					"raw": "http://localhost:54919/api/device/get/?id=abc",
+					"protocol": "http",
+					"auth": {},
+					"host": [
+						"localhost"
+					],
+					"port": "54919",
+					"path": [
+						"api",
+						"device",
+						"get",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "abc",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Retrieve device"
+			},
+			"response": []
+		}
+	]
+}
