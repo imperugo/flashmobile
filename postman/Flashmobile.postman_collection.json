@@ -54,7 +54,7 @@
 					"name": "Recupera Chat",
 					"request": {
 						"url": {
-							"raw": "http://localhost:54919/api/chat/get/?id=6164e18f-0c63-46aa-8b69-843a6a90db5c",
+							"raw": "http://localhost:54919/api/chat/get/?id=e54b078f-3971-41f9-a965-a0d5e59281ee",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -69,7 +69,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "6164e18f-0c63-46aa-8b69-843a6a90db5c",
+									"value": "e54b078f-3971-41f9-a965-a0d5e59281ee",
 									"equals": true,
 									"description": ""
 								}
@@ -80,6 +80,63 @@
 						"header": [],
 						"body": {},
 						"description": "Ad ogni riavvio l'id cambia perchè è un guid e persistiamo in memoria, è necessario aggiornare l'url"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Chat",
+					"request": {
+						"url": "http://localhost:54919/api/chat/update",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "DeviceIdentifier",
+									"value": "Telefono di Ugo",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "CallerIdentifier",
+									"value": "12345",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "ChatIdentifier",
+									"value": "b584689d-3d41-4f1a-8a52-ac693ba34a26",
+									"description": "Must be updated everytime you restard the application",
+									"type": "text"
+								},
+								{
+									"key": "Name",
+									"value": "My Name",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Description",
+									"value": "My Description",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Avatar",
+									"description": "",
+									"type": "file",
+									"src": "avatar.jpg"
+								}
+							]
+						},
+						"description": ""
 					},
 					"response": []
 				}

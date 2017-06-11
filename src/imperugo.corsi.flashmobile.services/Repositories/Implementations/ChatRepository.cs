@@ -25,6 +25,11 @@ namespace imperugo.corsi.flashmobile.services.Repositories.Implementations
 		{
 		}
 
+		public bool Exist(string chatIdentifier)
+		{
+			return db.Any(x => x.Id == chatIdentifier);
+		}
+
 		public Chat CreateChat(string[] callerIndentifiers)
 		{
 			var chat = new Chat();

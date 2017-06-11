@@ -34,6 +34,9 @@ namespace imperugo.corsi.flashmobile.services.APIs
 				return NotFound();
 			}
 
+			var url = $"{Request.Scheme}://{Request.Host}/{Constants.Storage.ChatAvatars}/{chat.AvatarFileName}";
+			chat.AvatarFileName = url;
+
 			return Ok(chat);
 		}
 
@@ -68,17 +71,22 @@ namespace imperugo.corsi.flashmobile.services.APIs
 				return BadRequest(ModelState);
 			}
 
+			if (!this.chatRepository.Exist(request.ChatIdentifier))
+			{
+				return NotFound("Unable to locate the specified chat.");
+			}
+
 			string normalizedFilename = $"{Guid.NewGuid()}.jpg";
 
 			var file = request.Avatar;
-			var filename = Path.Combine(hostingEnvironment.WebRootPath, "Constants.Storage.ChatAvatars", normalizedFilename);
+			var filename = Path.Combine(hostingEnvironment.WebRootPath, Constants.Storage.ChatAvatars, normalizedFilename);
 
 			using (var stream = System.IO.File.OpenWrite(filename))
 			{
 				file.CopyToAsync(stream);
 			}
 
-			this.chatRepository.UpdateChat(request.CallerIdentifier,request.Name,request.Description, normalizedFilename);
+			this.chatRepository.UpdateChat(request.ChatIdentifier,request.Name,request.Description, normalizedFilename);
 
 			return Ok();
 		}
