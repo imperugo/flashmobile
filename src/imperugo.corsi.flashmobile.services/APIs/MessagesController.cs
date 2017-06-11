@@ -5,7 +5,7 @@ namespace imperugo.corsi.flashmobile.services.APIs
 {
 	[Authorize]
 	[Route("api/[controller]/[action]")]
-	public class MessagesController : ControllerBase
+	public class MessagesController : ApiControllerBase
 	{
 	}
 }

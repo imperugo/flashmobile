@@ -1,9 +1,10 @@
-﻿using imperugo.corsi.flashmobile.services.Results;
+﻿using System.Linq;
+using imperugo.corsi.flashmobile.services.Results;
 using Microsoft.AspNetCore.Mvc;
 
 namespace imperugo.corsi.flashmobile.services.APIs
 {
-	public class ControllerBase : Controller
+	public class ApiControllerBase : Controller
 	{
 		public IActionResult Conflict()
 		{
@@ -24,5 +25,8 @@ namespace imperugo.corsi.flashmobile.services.APIs
 		{
 			return new NotAcceptableResultObjectResult(error);
 		}
+
+		public string CallerIdentifier => Request.Headers["CallerIdentifier"].FirstOrDefault();
+		public string DeviceIdentifier => Request.Headers["DeviceIdentifier"].FirstOrDefault();
 	}
 }

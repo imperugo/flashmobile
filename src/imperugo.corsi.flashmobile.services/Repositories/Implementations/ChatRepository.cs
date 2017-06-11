@@ -12,6 +12,11 @@ namespace imperugo.corsi.flashmobile.services.Repositories.Implementations
 	{
 		public static ConcurrentBag<Chat> db = new ConcurrentBag<Chat>();
 
+		public Chat GetById(string chatIdentifier)
+		{
+			return db.FirstOrDefault(x => x.Id == chatIdentifier);
+		}
+
 		public Chat CreateChat(string[] callerIndentifiers)
 		{
 			var chat = new Chat();

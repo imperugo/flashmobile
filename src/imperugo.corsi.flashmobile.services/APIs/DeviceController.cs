@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace imperugo.corsi.flashmobile.services.APIs
 {
 	[Route("api/[controller]/[action]")]
-	public class DeviceController : ControllerBase
+	public class DeviceController : ApiControllerBase
 	{
 		private readonly IDeviceRepository deviceRepository;
 		private readonly ILogger<DeviceController> logger;
@@ -22,7 +22,14 @@ namespace imperugo.corsi.flashmobile.services.APIs
 		[HttpGet]
 		public IActionResult Get(string id)
 		{
-			return Ok(this.deviceRepository.Get(id));
+			var device = this.deviceRepository.Get(id);
+
+			if (device == null)
+			{
+				return NotFound();
+			}
+
+			return Ok(device);
 		}
 
 		[HttpPost]

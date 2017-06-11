@@ -38,17 +38,15 @@ namespace imperugo.corsi.flashmobile.services
 
 
 			services.AddSingleton<IDeviceRepository, DeviceRepository>();
+			services.AddSingleton<IChatRepository, ChatRepository>();
 
 			services.AddAntiforgery(options => { options.RequireSsl = true; });
 
-			
-			services
-				
+			services				
 				.AddMvc(options =>
 				{
 					// Default value 200;
 					options.MaxModelValidationErrors = 50;
-					//options.InputFormatters.Add(new JsonInputFormatter());
 				})
 				.AddJsonOptions(opt =>
 				{
@@ -78,7 +76,6 @@ namespace imperugo.corsi.flashmobile.services
 			{
 				OnPrepareResponse = x => x.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=604800" // A week in seconds
 			});
-
 			
 			lifetime.ApplicationStopping.Register(() =>
 			{
