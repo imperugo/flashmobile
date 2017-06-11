@@ -4,7 +4,7 @@ namespace imperugo.corsi.flashmobile.services.Exceptions
 {
 	public class ApplicationException : Exception
 	{
-		public ApplicationException()
+		public ApplicationException() : this("Something went wrong")
 		{
 		}
 

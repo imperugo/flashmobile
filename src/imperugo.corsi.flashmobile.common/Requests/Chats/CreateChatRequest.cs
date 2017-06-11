@@ -1,4 +1,6 @@
-﻿namespace imperugo.corsi.flashmobile.common.Requests.Chats
+﻿using System;
+
+namespace imperugo.corsi.flashmobile.common.Requests.Chats
 {
 	public class CreateChatRequest : RequestBase
 	{
