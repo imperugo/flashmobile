@@ -2,9 +2,8 @@
 
 namespace imperugo.corsi.flashmobile.services.Repositories.Interfaces
 {
-	public interface IDeviceRepository
+	public interface IDeviceRepository : IRepositoryBase<Device>
 	{
-		Device Get(string callerIdentifier);
-		void AddDevice(string deviceIdentifier, string callerIdentifier);
+		Device AddDevice(string deviceIdentifier, string callerIdentifier);
 	}
 }

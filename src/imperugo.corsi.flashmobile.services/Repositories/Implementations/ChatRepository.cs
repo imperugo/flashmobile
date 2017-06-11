@@ -17,11 +17,20 @@ namespace imperugo.corsi.flashmobile.services.Repositories.Implementations
 			return db.FirstOrDefault(x => x.Id == chatIdentifier);
 		}
 
+		public void Seed()
+		{
+		}
+
+		public void Seed(Chat[] documents)
+		{
+		}
+
 		public Chat CreateChat(string[] callerIndentifiers)
 		{
 			var chat = new Chat();
 			chat.CallerIdentifiers = callerIndentifiers;
 			chat.Id = Guid.NewGuid().ToString();
+			chat.Name = "New Chat";
 
 			db.Add(chat);
 

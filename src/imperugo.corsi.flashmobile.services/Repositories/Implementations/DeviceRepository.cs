@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Linq;
 using imperugo.corsi.flashmobile.services.Exceptions;
 using imperugo.corsi.flashmobile.services.Repositories.Documents;
 using imperugo.corsi.flashmobile.services.Repositories.Interfaces;
@@ -8,25 +9,13 @@ namespace imperugo.corsi.flashmobile.services.Repositories.Implementations
 {
 	public class DeviceRepository : IDeviceRepository
 	{
-		private static readonly ConcurrentDictionary<string, Device> db = new ConcurrentDictionary<string, Device>();
+		private static readonly ConcurrentBag<Device> db = new ConcurrentBag< Device>();
 
-		public Device Get(string callerIdentifier)
+		public Device AddDevice(string deviceIdentifier, string callerIdentifier)
 		{
-			var exist = db.ContainsKey(callerIdentifier);
+			var dbDevice = db.FirstOrDefault(x => x.CallerIdentifier == callerIdentifier);
 
-			if (exist)
-			{
-				return db[callerIdentifier];
-			}
-
-			return null;
-		}
-
-		public void AddDevice(string deviceIdentifier, string callerIdentifier)
-		{
-			var exist = db.ContainsKey(callerIdentifier);
-
-			if (!exist)
+			if (dbDevice == null)
 			{
 				var device = new Device
 				{
@@ -35,17 +24,28 @@ namespace imperugo.corsi.flashmobile.services.Repositories.Implementations
 					Id = Guid.NewGuid().ToString()
 				};
 
-				db.TryAdd(callerIdentifier, device);
-				return;
+				db.Add(device);
+				return device;
 			}
 
-			var identifier = db[callerIdentifier];
 
+			if (dbDevice.DeviceIdentifier == deviceIdentifier)
+				return dbDevice;
 
-			if (identifier.DeviceIdentifier == deviceIdentifier)
-				return;
+			throw new CallerIdentifierAlreadyRegistered(dbDevice.DeviceIdentifier, callerIdentifier);
+		}
 
-			throw new CallerIdentifierAlreadyRegistered(identifier.DeviceIdentifier, callerIdentifier);
+		public Device GetById(string id)
+		{
+			return db.FirstOrDefault(x => x.CallerIdentifier == id);
+		}
+
+		public void Seed()
+		{
+		}
+
+		public void Seed(Device[] documents)
+		{
 		}
 	}
 }

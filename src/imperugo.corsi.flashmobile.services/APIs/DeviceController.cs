@@ -1,6 +1,7 @@
 ﻿using System;
 using imperugo.corsi.flashmobile.common.Requests.Registration;
 using imperugo.corsi.flashmobile.services.Exceptions;
+using imperugo.corsi.flashmobile.services.Repositories.Documents;
 using imperugo.corsi.flashmobile.services.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -22,7 +23,7 @@ namespace imperugo.corsi.flashmobile.services.APIs
 		[HttpGet]
 		public IActionResult Get(string id)
 		{
-			var device = this.deviceRepository.Get(id);
+			var device = this.deviceRepository.GetById(id);
 
 			if (device == null)
 			{
@@ -45,9 +46,11 @@ namespace imperugo.corsi.flashmobile.services.APIs
 				return BadRequest(ModelState);
 			}
 
+			Device device = null;
+
 			try
 			{
-				this.deviceRepository.AddDevice(request.DeviceIdentifier, request.CallerIdentifier);
+				device = this.deviceRepository.AddDevice(request.DeviceIdentifier, request.CallerIdentifier);
 			}
 			catch (ApplicationException ex)
 			{
@@ -56,9 +59,7 @@ namespace imperugo.corsi.flashmobile.services.APIs
 				return Conflict(ex.Message);
 			}
 
-			// save the device
-
-			return Created(new Uri($"/api/device/get/{request.CallerIdentifier}",UriKind.Relative), request);
+			return Created(new Uri($"/api/device/get/{device.Id}",UriKind.Relative), device);
 		}
 	}
 }

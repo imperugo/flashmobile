@@ -8,71 +8,154 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:54919/api/device/add",
-			"request": {
-				"url": "http://localhost:54919/api/device/add",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "DeviceIdentifier",
-							"value": "1234",
-							"description": "",
-							"type": "text"
+			"name": "Chats",
+			"description": "",
+			"item": [
+				{
+					"name": "Create Chat",
+					"request": {
+						"url": "http://localhost:54919/api/chat/create",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "CallerIndentifiers[0]",
+									"value": "123456",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "CallerIndentifiers[1]",
+									"value": "abcdef",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "DeviceIdentifier",
+									"value": "Telefono di Ugo",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "CallerIdentifier",
+									"value": "12345",
+									"description": "",
+									"type": "text"
+								}
+							]
 						},
-						{
-							"key": "CallerIdentifier",
-							"value": "abc",
-							"description": "",
-							"type": "text"
-						}
-					]
+						"description": ""
+					},
+					"response": []
 				},
-				"description": "Add Device"
-			},
-			"response": []
+				{
+					"name": "Recupera Chat",
+					"request": {
+						"url": {
+							"raw": "http://localhost:54919/api/chat/get/?id=6164e18f-0c63-46aa-8b69-843a6a90db5c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "54919",
+							"path": [
+								"api",
+								"chat",
+								"get",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6164e18f-0c63-46aa-8b69-843a6a90db5c",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Ad ogni riavvio l'id cambia perchè è un guid e persistiamo in memoria, è necessario aggiornare l'url"
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "http://localhost:54919/api/device/get/?id=abc",
-			"request": {
-				"url": {
-					"raw": "http://localhost:54919/api/device/get/?id=abc",
-					"protocol": "http",
-					"auth": {},
-					"host": [
-						"localhost"
-					],
-					"port": "54919",
-					"path": [
-						"api",
-						"device",
-						"get",
-						""
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "abc",
-							"equals": true,
-							"description": ""
-						}
-					],
-					"variable": []
+			"name": "Devices",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:54919/api/device/add",
+					"request": {
+						"url": "http://localhost:54919/api/device/add",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "DeviceIdentifier",
+									"value": "Telefono di Ugo",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "CallerIdentifier",
+									"value": "Cellulare di Ugo",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Add Device"
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": "Retrieve device"
-			},
-			"response": []
+				{
+					"name": "http://localhost:54919/api/device/get/?id=abc",
+					"request": {
+						"url": {
+							"raw": "http://localhost:54919/api/device/get/?id=Cellulare di Ugo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "54919",
+							"path": [
+								"api",
+								"device",
+								"get",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "Cellulare di Ugo",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Retrieve device"
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using imperugo.corsi.flashmobile.common.Requests.Chats;
+using imperugo.corsi.flashmobile.services.Exceptions.Chats;
 using imperugo.corsi.flashmobile.services.Repositories.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -37,7 +38,7 @@ namespace imperugo.corsi.flashmobile.services.APIs
 		}
 
 		[HttpPost]
-		public IActionResult CreateChat([FromForm] CreateChatRequest request)
+		public IActionResult Create([FromForm] CreateChatRequest request)
 		{
 			if (request == null)
 			{
@@ -55,7 +56,7 @@ namespace imperugo.corsi.flashmobile.services.APIs
 		}
 
 		[HttpPut]
-		public IActionResult UpdateChat([FromForm] UpdateChatInfoRequest request)
+		public IActionResult Update([FromForm] UpdateChatInfoRequest request)
 		{
 			if (request == null)
 			{
@@ -80,6 +81,21 @@ namespace imperugo.corsi.flashmobile.services.APIs
 			this.chatRepository.UpdateChat(request.CallerIdentifier,request.Name,request.Description, normalizedFilename);
 
 			return Ok();
+		}
+
+		[HttpDelete]
+		public IActionResult Delete([FromQuery] DeleteChatRequest request)
+		{
+			try
+			{
+				this.chatRepository.DeleteChat(request.ChatIdentifier);
+				return Ok();
+			}
+			catch (ChatNotFoundException ex)
+			{
+				this.logger.LogWarning(ex.Message);
+				return NotFound();
+			}
 		}
 	}
 }
