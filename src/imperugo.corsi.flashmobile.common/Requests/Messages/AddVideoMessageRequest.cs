@@ -5,7 +5,7 @@ namespace imperugo.corsi.flashmobile.common.Requests.Messages
 {
 	public class AddVideoMessageRequest : AddMessageBaseRequest
 	{
-		[FileExtensions(Extensions = "mp4")]
+		[Required]
 		public IFormFile Media { get; set; }
 	}
 }

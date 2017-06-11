@@ -5,7 +5,7 @@ namespace imperugo.corsi.flashmobile.common.Requests.Messages
 {
 	public class AddImageMessageRequest : AddMessageBaseRequest
 	{
-		[FileExtensions(Extensions = "jpg,jpeg")]
+		[Required]
 		public IFormFile Media { get; set; }
 	}
 }

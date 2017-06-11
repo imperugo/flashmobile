@@ -5,7 +5,7 @@ namespace imperugo.corsi.flashmobile.common.Requests.Messages
 {
 	public class AddAudioMessageRequest : AddMessageBaseRequest
 	{
-		[FileExtensions(Extensions = "mp3")]
+		[Required]
 		public IFormFile Media { get; set; }
 	}
 }
