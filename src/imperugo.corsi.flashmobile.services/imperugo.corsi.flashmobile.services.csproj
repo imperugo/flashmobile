@@ -10,6 +10,11 @@
 	<ItemGroup>
 		<Folder Include="Configuration\" />
 		<Folder Include="wwwroot\Uploads\Chats\Avatars\" />
+		<Folder Include="wwwroot\Uploads\Chats\Avatars\" />
+		<Folder Include="wwwroot\Uploads\Messages\Audio\" />
+		<Folder Include="wwwroot\Uploads\Messages\Images\" />
+		<Folder Include="wwwroot\Uploads\Messages\Contacts\" />
+		<Folder Include="wwwroot\Uploads\Messages\Video\" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />

@@ -4,7 +4,6 @@
 	{
 		public bool Read { get; set; }
 		public string Text { get; set; }
-		public string Description { get; set; }
 		public string ChatIdentifier { get; set; }
 	}
 
@@ -13,6 +12,7 @@
 		public string MediaFileName { get; set; }
 	}
 
+	public class TextMessage : MessageBase { }
 	public class ImageMessage : MediaMessageBase { }
 	public class VideoMessage : MediaMessageBase { }
 	public class AudioMessage : MediaMessageBase { }
@@ -25,7 +25,7 @@
 
 	public class LocationMessage : MessageBase
 	{
-		public long Latitude { get; set; }
-		public long Longitude { get; set; }
+		public double Latitude { get; set; }
+		public double Longitude { get; set; }
 	}
 }

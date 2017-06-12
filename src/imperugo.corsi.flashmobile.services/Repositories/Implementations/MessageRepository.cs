@@ -21,5 +21,81 @@ namespace imperugo.corsi.flashmobile.services.Repositories.Implementations
 		public void Seed(MessageBase[] documents)
 		{
 		}
+
+		public TextMessage AddMessage(string text, string chatIdentifier)
+		{
+			var msg = new TextMessage();
+			msg.ChatIdentifier = chatIdentifier;
+			msg.Text = text;
+
+			db.Add(msg);
+
+			return msg;
+		}
+
+		public ImageMessage AddImageMessage(string text, string chatIdentifier, string imageFilename)
+		{
+			var msg = new ImageMessage();
+			msg.ChatIdentifier = chatIdentifier;
+			msg.Text = text;
+			msg.MediaFileName = imageFilename;
+
+			db.Add(msg);
+
+			return msg;
+		}
+
+		public VideoMessage AddVideoMessage(string text, string chatIdentifier, string imageFilename)
+		{
+			var msg = new VideoMessage();
+			msg.ChatIdentifier = chatIdentifier;
+			msg.Text = text;
+			msg.MediaFileName = imageFilename;
+
+			db.Add(msg);
+
+			return msg;
+		}
+
+		public AudioMessage AddAudioMessage(string text, string chatIdentifier, string imageFilename)
+		{
+			var msg = new AudioMessage();
+			msg.ChatIdentifier = chatIdentifier;
+			msg.Text = text;
+			msg.MediaFileName = imageFilename;
+
+			db.Add(msg);
+
+			return msg;
+		}
+
+		public LocationMessage AddLocationMessage(string text, string chatIdentifier, double latitude,
+			double longitude)
+		{
+			var msg = new LocationMessage();
+			msg.ChatIdentifier = chatIdentifier;
+			msg.Text = text;
+			msg.Latitude = latitude;
+			msg.Longitude = longitude;
+
+			db.Add(msg);
+
+			return msg;
+		}
+
+		public ContactMessage AddContactMessage(string text, string chatIdentifier, string imageFilename, string firstname,
+			string lastname)
+		{
+			var msg = new ContactMessage();
+			msg.ChatIdentifier = chatIdentifier;
+			msg.Text = text;
+			msg.MediaFileName = imageFilename;
+			msg.Firsname = firstname;
+			msg.Lastname = lastname;
+
+			db.Add(msg);
+
+			return msg;
+		}
 	}
 }
