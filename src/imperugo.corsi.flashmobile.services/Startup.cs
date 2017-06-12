@@ -39,6 +39,7 @@ namespace imperugo.corsi.flashmobile.services
 
 			services.AddSingleton<IDeviceRepository, DeviceRepository>();
 			services.AddSingleton<IChatRepository, ChatRepository>();
+			services.AddSingleton<IMessageRepository, MessageRepository>();
 
 			services.AddAntiforgery(options => { options.RequireSsl = true; });
 

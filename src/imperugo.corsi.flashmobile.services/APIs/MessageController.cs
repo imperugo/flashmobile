@@ -9,7 +9,6 @@ using Microsoft.Extensions.Logging;
 
 namespace imperugo.corsi.flashmobile.services.APIs
 {
-	[Authorize]
 	[Route("api/[controller]/[action]")]
 	public class MessageController : ApiControllerBase
 	{
@@ -196,7 +195,7 @@ namespace imperugo.corsi.flashmobile.services.APIs
 		}
 
 		[HttpGet]
-		public IActionResult GetMessages([FromQuery] string chatIdentifier, [FromQuery] DateTime beginTime)
+		public IActionResult GetMessages([FromQuery] string chatIdentifier, [FromQuery] DateTime beginTime)	
 		{
 
 			var exist = chatRepository.Exist(chatIdentifier);
