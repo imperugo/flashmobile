@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Linq;
+using imperugo.corsi.flashmobile.common.Responses.Paged;
 using imperugo.corsi.flashmobile.services.Repositories.Documents;
 using imperugo.corsi.flashmobile.services.Repositories.Interfaces;
 
@@ -96,6 +97,20 @@ namespace imperugo.corsi.flashmobile.services.Repositories.Implementations
 			db.Add(msg);
 
 			return msg;
+		}
+
+		public PagedResult<MessageBase> GetMessages(int pageIndex, int pageSize, string chatIdentifier)
+		{
+			var messages = db
+				.Where(x => x.ChatIdentifier == chatIdentifier)
+				.Skip(pageSize * pageIndex)
+				.Take(pageSize)
+				.ToList();
+
+			var totalMessages = db
+				.Count(x => x.ChatIdentifier == chatIdentifier);
+
+			return new PagedResult<MessageBase>(pageIndex, pageSize, messages, totalMessages);
 		}
 	}
 }

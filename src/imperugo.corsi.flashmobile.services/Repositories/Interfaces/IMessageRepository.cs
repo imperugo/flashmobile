@@ -1,4 +1,5 @@
-﻿using imperugo.corsi.flashmobile.services.Repositories.Documents;
+﻿using imperugo.corsi.flashmobile.common.Responses.Paged;
+using imperugo.corsi.flashmobile.services.Repositories.Documents;
 
 namespace imperugo.corsi.flashmobile.services.Repositories.Interfaces
 {
@@ -10,5 +11,6 @@ namespace imperugo.corsi.flashmobile.services.Repositories.Interfaces
 		AudioMessage AddAudioMessage(string text, string chatIdentifier, string imageFilename);
 		LocationMessage AddLocationMessage(string text, string chatIdentifier, double latitude, double longitude);
 		ContactMessage AddContactMessage(string text, string chatIdentifier, string imageFilename, string firstname, string lastname);
+		PagedResult<MessageBase> GetMessages(int pageIndex, int pageSize, string chatIdentifier);
 	}
 }
