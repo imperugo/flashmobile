@@ -194,5 +194,17 @@ namespace imperugo.corsi.flashmobile.services.APIs
 
 			return Created(new Uri($"/api/message/get/{message.Id}", UriKind.Relative), message);
 		}
+
+		[HttpGet]
+		public IActionResult GetMessages([FromQuery] string chatIdentifier, [FromQuery] DateTime beginTime)
+		{
+
+			var exist = chatRepository.Exist(chatIdentifier);
+
+			if (!exist)
+				return BadRequest("Unable to locate the specified chat.");
+
+			return Ok(this.messageRepository.GetMessages(chatIdentifier, beginTime));
+		}
 	}
 }
