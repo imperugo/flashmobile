@@ -145,7 +145,7 @@ namespace imperugo.corsi.flashmobile.services.APIs
 		}
 
 		[HttpPost]
-		public IActionResult AddLocationMessage([FromForm] AddContactMessageRequest request)
+		public IActionResult AddContactMessage([FromForm] AddContactMessageRequest request)
 		{
 			if (request == null)
 				return BadRequest("Unable to locate the body request");
@@ -175,7 +175,7 @@ namespace imperugo.corsi.flashmobile.services.APIs
 		}
 
 		[HttpPost]
-		public IActionResult AddContactMessage([FromForm] AddLocationMessageRequest request)
+		public IActionResult AddLocationMessage([FromForm] AddLocationMessageRequest request)
 		{
 			if (request == null)
 				return BadRequest("Unable to locate the body request");
