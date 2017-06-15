@@ -189,7 +189,7 @@ namespace imperugo.corsi.flashmobile.services.APIs
 				return BadRequest("Unable to locate the specified chat.");
 
 			var message = messageRepository.AddLocationMessage(request.Message, request.ChatIdentifier, request.Latitude,
-				request.Latitude);
+				request.Longitude);
 
 			return Created(new Uri($"/api/message/get/{message.Id}", UriKind.Relative), message);
 		}
